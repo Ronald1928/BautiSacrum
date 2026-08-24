@@ -20,7 +20,9 @@ Carpeta principal/
 │   └── preload.js
 ├── build/                       # Recursos para la aplicación
 │   └── icon.ico
-└── package.json                 # Configuración principal
+├── package.json                 # Configuración principal
+├── iniciar_backend.vbs          # Inicio del backend en segundo plano
+└── README.md
 ```
 
 ### Componentes
@@ -37,13 +39,13 @@ Carpeta principal/
 1. Clona el repositorio:
 
    ```bash
-   git clone https://github.com/tu-usuario/bautisacrum.git
+   git clone https://github.com/Ronald1928/BautiSacrum.git
    ```
 
 2. Entra a la carpeta principal:
 
    ```bash
-   cd bautisacrum
+   cd BautiSacrum
    ```
 
 3. Instala las dependencias del proyecto raíz:
@@ -72,45 +74,87 @@ npm run dev
 
 Este comando inicia el servidor de desarrollo de Vite y posteriormente abre Electron cuando el frontend está disponible.
 
-El backend puede iniciarse mediante:
+Antes de iniciar la aplicación, el backend debe estar disponible en el puerto 4000. Para ello, puede utilizarse el archivo:
 
 ```bash
-npm run backend
+iniciar_backend.vbs
 ```
 
 Durante la ejecución, el backend utiliza el puerto **4000** y el frontend de desarrollo utiliza el puerto **5173**.
 
 ---
 
-## Funcionamiento de Electron
+## Funcionamiento de la aplicación
 
-Al iniciar la aplicación, Electron se encarga de:
+El flujo de inicio es:
 
-1. Iniciar el servidor backend.
-2. Esperar a que el backend esté disponible.
-3. Crear la ventana principal de la aplicación.
-4. Cargar el frontend de React.
-5. Proporcionar al frontend la URL de la API.
-6. Cerrar el proceso del backend cuando se cierra la aplicación.
+1. Se inicia el backend mediante iniciar_backend.vbs.
+2. Node.js ejecuta bautismo-backend/server.js.
+3. El backend queda disponible en el puerto 4000.
+4. Electron comprueba que el backend esté disponible.
+5. Una vez que responde, Electron carga la interfaz de React.
+6. El frontend realiza las solicitudes a la API mediante HTTP.
 
 En producción, Electron carga directamente el frontend compilado mediante Vite.
 
 ```text
-Usuario
-   ↓
-BautiSacrum
-   ↓
-Electron
-   ├── Inicia Backend
-   │       ↓
-   │   Express + SQLite
-   │
-   └── Carga Frontend
-           ↓
-       React + Vite
-           ↓
-      API localhost:4000
+                     Usuario
+                        ↓
+                    BautiSacrum
+                         │
+          ┌──────────────┴──────────────┐
+          │                             │
+          ↓                             ↓
+iniciar_backend.vbs                 Electron
+          │                             │
+          ↓                             ↓
+     Node.js                       Espera al
+     server.js                   backend :4000
+          │                             │
+          └──────────────┬──────────────┘
+                         ↓
+                  localhost:4000
+                         │
+                         ↓
+                  React Frontend
 ```
+
+---
+
+## Inicio del backend
+
+El archivo:
+
+```text
+iniciar_backend.vbs
+```
+
+permite iniciar el servidor backend utilizando Windows Script Host (VBScript).
+
+El script ejecuta server.js mediante Node.js y mantiene el proceso ejecutándose en segundo plano sin mostrar una ventana de consola.
+
+Su función principal es permitir que el backend esté disponible antes de que Electron cargue completamente la aplicación.
+
+---
+
+## Copias de seguridad
+
+BautiSacrum incluye un sistema de copias de seguridad automáticas para proteger los registros almacenados en la base de datos SQLite.
+
+Las copias se almacenan en una carpeta independiente:
+
+```text
+BackupsBautiSacrum/
+```
+
+El sistema:
+
+- Realiza copias de la base de datos cada 8 horas.
+- Conserva un máximo de 10 copias.
+- Elimina automáticamente las copias más antiguas cuando se supera el límite.
+- Guarda la fecha de la última copia realizada.
+
+Las copias se generan como archivos .sqlite.
 
 ---
 
@@ -177,11 +221,11 @@ build/icon.ico
 
 ### Frontend
 
-👉 [BautiSacrum Frontend](https://github.com/tu-usuario/iglesia-bautismo-frontend)
+[BautiSacrum Frontend](https://github.com/Ronald1928/bautismo-frontend-escritorio)
 
 ### Backend
 
-👉 [BautiSacrum Backend](https://github.com/tu-usuario/bautismo-backend)
+[BautiSacrum Backend](https://github.com/Ronald1928/bautismo-backend-escritorio)
 
 ---
 
