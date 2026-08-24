@@ -1,0 +1,6 @@
+[submodule "bautismo-backend"]
+	path = bautismo-backend
+	url = https://github.com/Ronald1928/bautismo-backend-escritorio.git
+[submodule "iglesia-bautismo-frontend"]
+	path = iglesia-bautismo-frontend
+	url = https://github.com/Ronald1928/bautismo-frontend-escritorio.git
