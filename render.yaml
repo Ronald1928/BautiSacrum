@@ -1,0 +1,12 @@
+services:
+  - type: web
+    name: bautisacrum-api
+    runtime: docker
+    dockerfilePath: ./bautismo-api/Dockerfile
+    dockerContext: ./bautismo-api
+    healthCheckPath: /healthz
+    envVars:
+      - key: DATABASE_URL
+        sync: false
+      - key: SYNC_API_TOKEN_HASHES
+        sync: false
