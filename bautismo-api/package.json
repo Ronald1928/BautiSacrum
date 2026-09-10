@@ -1,0 +1,9 @@
+{
+  "name":"bautisacrum-private-api",
+  "version":"1.0.0",
+  "private":true,
+  "engines":{"node":">=22"},
+  "scripts":{"start":"node server.js","device-token":"node device-token.js","test":"node tests/integration.cjs"},
+  "dependencies":{"dotenv":"^17.2.1","express":"^5.1.0","pg":"^8.16.3"},
+  "devDependencies":{"@electric-sql/pglite":"^0.5.8"}
+}
