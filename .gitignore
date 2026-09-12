@@ -19,3 +19,7 @@ release/
 # System files
 Thumbs.db
 .DS_Store
+
+# Chromium incluido para generar PDFs
+puppeteer-cache/
+

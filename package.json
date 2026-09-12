@@ -1,7 +1,7 @@
 {
   "name": "bautisacrum",
   "private": true,
-  "version": "1.0.1",
+  "version": "1.1.1",
   "description": "Aplicación de escritorio para certificados de bautismo",
   "main": "electron/main.js",
   "icon": "build/icon.ico",
@@ -14,7 +14,8 @@
     "backend": "node bautismo-backend/server.js",
     "build:react": "npm run build --prefix iglesia-bautismo-frontend",
     "start": "electron .",
-    "dist": "npm run build:react && electron-builder"
+    "dist": "npm run build:pdf && npm run build:react && electron-builder",
+    "build:pdf": "node scripts/build-pdf-assets.cjs"
   },
   "build": {
     "appId": "com.bautisacrum.app",
@@ -27,11 +28,25 @@
       "iglesia-bautismo-frontend/dist/**/*",
       "electron/**/*",
       "build/**/*",
-      "bautismo-backend/**/*",
       "package.json"
     ],
-    "asarUnpack": [
-      "**/better-sqlite3/**"
+    "extraResources": [
+      {
+        "from": "bautismo-backend",
+        "to": "bautismo-backend",
+        "filter": [
+          "**/*",
+          "!node_modules/**/*",
+          "!.env",
+          "!.env.*",
+          "!database/**/*",
+          "!tests/**/*"
+        ]
+      },
+      {
+        "from": "puppeteer-cache",
+        "to": "puppeteer-cache"
+      }
     ],
     "win": {
       "target": "nsis",
@@ -54,16 +69,22 @@
   "dependencies": {
     "axios": "^1.12.0",
     "cors": "^2.8.5",
+    "dotenv": "^17.2.1",
     "electron-context-menu": "^4.1.1",
     "electron-is-dev": "^3.0.1",
     "express": "^5.1.0",
+    "puppeteer": "^24.18.0",
     "sqlite3": "^5.1.7"
   },
   "devDependencies": {
+    "@fontsource/alex-brush": "5.2.6",
+    "@fontsource/pt-serif": "5.2.7",
+    "@tailwindcss/cli": "4.1.13",
     "concurrently": "^9.2.1",
     "cross-env": "^10.0.0",
     "electron": "^38.3.0",
     "electron-builder": "^26.0.12",
+    "tailwindcss": "4.1.13",
     "vite": "^7.1.5",
     "wait-on": "^8.0.4"
   }

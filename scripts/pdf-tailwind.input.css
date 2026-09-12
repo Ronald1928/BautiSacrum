@@ -1,0 +1,2 @@
+@import "tailwindcss" source(none);
+@source "../bautismo-backend/pdf/generarPdf.js";
