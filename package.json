@@ -1,7 +1,7 @@
 {
   "name": "bautisacrum",
   "private": true,
-  "version": "1.1.1",
+  "version": "1.1.6",
   "description": "Aplicación de escritorio para certificados de bautismo",
   "main": "electron/main.js",
   "icon": "build/icon.ico",

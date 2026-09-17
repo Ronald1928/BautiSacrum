@@ -67,10 +67,33 @@ async function main(){
   const automatic=make(true);await automatic.initialize();
   const settled=async()=>{for(let i=0;i<100;i++){const s=await automatic.status();if(s.mode==='online' && s.pending===0)return;await sleep(100);}throw new Error('No terminó la sincronización automática.');};
   await settled();await insert(automatic,300,'Automático');await settled();assert.equal((await store.lookup({databaseId:identity,syncId:randomUUID(),numeroArchivo:'300',libroBautizo:'1',folioBautizo:'1'})).row.nombreBautizado,'Automático');
+  assert.ok((await rows(automatic)).some(r=>r.nombreBautizado==='Eva'),'El inicio debe descargar los registros existentes');
+  const automaticRecord=(await rows(automatic)).find(r=>r.numeroArchivo==='300');
+  await run(automatic,'UPDATE certificados_bautismo SET nombreBautizado=? WHERE id=?',['Edición automática',automaticRecord.id]);
+  await settled();
+  assert.equal((await store.lookup({databaseId:identity,syncId:randomUUID(),numeroArchivo:'300',libroBautizo:'1',folioBautizo:'1'})).row.nombreBautizado,'Edición automática');
+  await run(automatic,'DELETE FROM certificados_bautismo WHERE id=?',[automaticRecord.id]);
+  await settled();
+  await b.synchronize();
+  assert.equal((await rows(b)).some(r=>r.numeroArchivo==='300'),false);
+  console.log('EVENTOS: inicio descarga datos; crear, editar y eliminar sincronizan automáticamente sin pulsar el botón.');
   // Consultar el estado local, hacer backups y health checks no consulta PostgreSQL.
   await sleep(300);const idle=queries.length;
   await automatic.status();await run(automatic,'PRAGMA user_version');await fetch(url+'/healthz');
   await sleep(16000);assert.equal(queries.length,idle,'Se detectó actividad periódica inesperada en PostgreSQL.');
+  // Dos instalaciones independientes: SQLite nuevas, misma API y Neon compartida.
+  const firstComputer=make();await firstComputer.initialize();
+  for(let i=1;i<=10;i++)await insert(firstComputer,1000+i,'Compartido '+i);
+  await firstComputer.synchronize();assert.equal((await firstComputer.status()).pending,0);
+  const secondComputer=make();await secondComputer.initialize();
+  assert.equal((await rows(secondComputer)).length,0,'El segundo equipo debe empezar vacío');
+  await secondComputer.synchronize();
+  assert.equal((await rows(secondComputer)).filter(r=>r.nombreBautizado.startsWith('Compartido ')).length,10);
+  await insert(secondComputer,1011,'Compartido 11');await secondComputer.synchronize();
+  await firstComputer.synchronize();
+  assert.equal((await rows(firstComputer)).filter(r=>r.nombreBautizado.startsWith('Compartido ')).length,11);
+  assert.equal((await rows(secondComputer)).filter(r=>r.nombreBautizado.startsWith('Compartido ')).length,11);
+  console.log('DOS EQUIPOS: A sube 10; B comienza con SQLite vacía, descarga 10 y agrega 1; A y B ven los mismos 11.');
   console.log('OK: API HTTP autenticada + PostgreSQL local + SQLite; conflictos, reconexión, reintentos sin duplicados, paginación, >50 pendientes y cero consultas en reposo durante más de 15 segundos.');
 }
 main().catch(e=>{console.error(e);process.exitCode=1;}).finally(async()=>{
