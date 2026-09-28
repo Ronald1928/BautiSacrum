@@ -1,0 +1,203 @@
+/* #root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.logo {
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+  transition: filter 300ms;
+}
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+}
+.logo.react:hover {
+  filter: drop-shadow(0 0 2em #61dafbaa);
+}
+
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}
+
+.card {
+  padding: 2em;
+}
+
+.read-the-docs {
+  color: #888;
+} */
+
+/* styles.css */
+
+/* .certificado-container {
+  margin: 40px auto;
+  width: 794px;
+  height: 1123px;
+  background-color: white;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  padding: 50px;
+  box-sizing: border-box;
+  font-family: 'Times New Roman';
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.certificado-title {
+  text-align: center;
+  font-size: 20px;
+  font-weight: bold;
+  margin: 40px 0 40px 0;
+}
+
+.subrayado {
+  text-decoration: underline;
+  font-weight: normal;
+  font-family: 'Times New Roman';
+  font-size: 14px;
+}
+
+
+.elemento-subrayado {
+  min-width: 300px;
+  text-align: center;  
+  border-bottom: 0.5px solid black; 
+  padding-bottom: 5px; 
+  display: inline-block;  
+}
+
+.estilo-hr {
+  border: none;
+  border-bottom: 1px solid black;
+  height: 1px;
+  margin: 10px 0;
+}
+
+.alineado-centro {
+  text-align: center;
+}
+
+.espaciado {
+  line-height: 1.5;
+  margin: 0 -5px 0 -5px;
+}
+
+.espaciado-margen {
+  margin: 20px -5px 0 -5px;
+}
+
+.mayuscula {
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+.margen-pequeño {
+  margin: 0 10px 0 5px;
+}
+
+.alineado-izquierda {
+  text-align: left;
+}
+
+.contenedor-firma-sello {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 100px; 
+  margin: 100px auto;
+}
+
+.firma {
+  text-align: center;
+  
+}
+
+.sello {
+  text-align: center;
+}
+
+.linea-firma {
+  width: 200px;
+  height: 1px;
+  background-color: #333;
+  margin: 0 auto 5px auto;
+}
+
+.marco-doble {
+  border: 5px double #333;
+  width: 100%;
+  max-width: 800px;
+  height: 993px;
+  padding: 40px;
+  box-sizing: border-box;
+  position: relative;
+}
+
+.marco-doble::before {
+  border: 5px double #333;
+  position: absolute;
+  box-sizing: border-box;
+  content: '';
+  top: 2px;
+  left: 2px;
+  right: 2px;
+  bottom: 2px;
+}
+
+.marco-interno {
+  border: 3px solid #000;
+  padding: 20px;
+  box-sizing: border-box;
+  position: absolute;
+  top:0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.logo-img {
+  position: absolute;
+  top: 30px;
+  left: 30px;
+  width: clamp(50px, 9.5vw, 100px);
+  height: auto;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.estilo-GV {
+  font-family: 'Great Vibes', cursive;
+  font-size: 26px;
+}
+
+.estilo-AB {
+  font-family: 'Alex Brush', cursive;
+  font-size: 26px;
+  text-align: center;
+}
+
+.estilo-TNR {
+  font-family: 'Times New Roman', serif;
+  text-align: center;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.direccion {
+  font-family: 'Times New Roman', serif;
+  text-align: center;
+  font-size: 14px;
+} */
