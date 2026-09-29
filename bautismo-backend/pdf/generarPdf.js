@@ -15,10 +15,10 @@ async function generarPdf(datos) {
     datos.genero === "Masculino" ? "o" : datos.genero === "Femenino" ? "a" : "";
 
   // Logo con ruta dinámica
-  const logoPath = getAssetPath("San-Isidro-Labrador-Logo.jpeg");
+  const logoPath = getAssetPath("SmLogo.png");
   const logoData = fs.readFileSync(logoPath);
   const logoBase64 = logoData.toString("base64");
-  const logoDataUrl = `data:image/jpeg;base64,${logoBase64}`;
+  const logoDataUrl = `data:image/png;base64,${logoBase64}`;
 
   const localCss = fs.readFileSync(getAssetPath("pdf-tailwind.css"), "utf8");
   const fontCss = fs.readFileSync(getAssetPath("pdf-fonts.css"), "utf8");
