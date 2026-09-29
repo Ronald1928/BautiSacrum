@@ -193,7 +193,7 @@ async function generarPdf(datos) {
           <div class="text-center justify-center mt-20">
             <p class="text-[14px] font-pt-serif">Pérez, Imbert, Puerto Plata, Rep. Dom.</p>
             <p class="text-[14px] font-pt-serif">Email: psanisidrolabradorperez@gmail.com</p>
-            <p class="text-[14px] font-pt-serif">Tel. 809-581-2925</p>
+            <p class="text-[14px] font-pt-serif">Tel. 809-581-2925 otra parroquia</p>
           </div>
           
         </div>
