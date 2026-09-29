@@ -72,7 +72,7 @@ async function generarPdf(datos) {
     
     <div class="text-center">
       <h2 class="text-2xl font-pt-serif">DIÓCESIS DE PUERTO PLATA</h2>
-      <h2 class="text-3xl font-alex">Parroquia San Isidro Labrador</h2>
+      <h2 class="text-3xl font-alex">Parroquia San Marcos Evangelista</h2>
     </div>
   </div>
 
@@ -191,9 +191,9 @@ async function generarPdf(datos) {
           </div>
 
           <div class="text-center justify-center mt-20">
-            <p class="text-[14px] font-pt-serif">Pérez, Imbert, Puerto Plata, Rep. Dom.</p>
-            <p class="text-[14px] font-pt-serif">Email: psanisidrolabradorperez@gmail.com</p>
-            <p class="text-[14px] font-pt-serif">Tel. 809-581-2925</p>
+            <p class="text-[14px] font-pt-serif">Calle Principal No. 42, San Marcos, Puerto Plata, Rep. Dom.</p>
+            <p class="text-[14px] font-pt-serif">Email: pmarcosev@gmail.com</p>
+            <p class="text-[14px] font-pt-serif">Tel. 809-970-3880</p>
           </div>
           
         </div>
